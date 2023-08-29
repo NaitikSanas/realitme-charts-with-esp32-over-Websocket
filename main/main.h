@@ -17,9 +17,6 @@
 #include "esp_event.h"
 #include "esp_wifi.h"
 
-
-
-
 int mpu_6050_i2c_slave_init(void);
 void mpu6050_angle_computation_task(void *arg);
 void ws_data_send_task(void);

@@ -6,7 +6,10 @@ static const char *TAG = "MAIN";
 mpu_handle_t mpu;
 int acc_error=0;                         //We use this variable to only calculate once the Acc data error
 char str[64] = {0};
-
+int ws_data_received_cb(uint8_t* data, size_t len){
+    printf("From Main");
+    return 0;   
+}
 uint32_t MAP(uint32_t au32_IN, uint32_t au32_INmin, uint32_t au32_INmax, uint32_t au32_OUTmin, uint32_t au32_OUTmax)
 {
     return ((((au32_IN - au32_INmin)*(au32_OUTmax - au32_OUTmin))/(au32_INmax - au32_INmin)) + au32_OUTmin);
@@ -59,11 +62,9 @@ void ws_data_send_task(void){
         memset(data,0,256);
         sprintf(data,"{\"x\" : [\"%.1f\"],\"y\":[\"%.1f\"],\"z\":[\"%.1f\"],\"x_acc\": [\"%d\"],\"y_acc\":[\"%d\"],\"z_acc\":   [\"%d\"]}",
                         Acc_angle_x,Acc_angle_y,Acc_angle_z, accel_raw.x, accel_raw.y , accel_raw.z);
-        set_data_fields((uint8_t*)data,strlen(data),false);
+        ws_set_data_fields((uint8_t*)data,strlen(data),false);
         vTaskDelay(1);
-    }
-    
-    
+    } 
 }
 
 void mpu6050_angle_computation_task(void *arg)

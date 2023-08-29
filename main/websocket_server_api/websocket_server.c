@@ -6,12 +6,11 @@ bool clear_on_send = false;
 char ws_data_field_last[WS_DATA_FIELD_SIZE]={0};
 char ws_data_field[WS_DATA_FIELD_SIZE]={0};
 SemaphoreHandle_t ws_df_semaphore;
-int set_data_fields(uint8_t* data, uint16_t len, bool clear_on_send){
+int ws_set_data_fields(uint8_t* data, uint16_t len, bool clear_on_send){
     if (xSemaphoreTake(ws_df_semaphore, portMAX_DELAY) == pdTRUE){
         if(len > WS_DATA_FIELD_SIZE){
             return -1;
-        }
-        
+        }   
         memset(ws_data_field,0,WS_DATA_FIELD_SIZE);
         memcpy(ws_data_field,data,len);
         xSemaphoreGive(ws_df_semaphore);
@@ -105,7 +104,7 @@ static esp_err_t handle_ws_req(httpd_req_t *req)
     }
     return ESP_OK;
 }
-void start_ws_server(httpd_handle_t http_server_handle){
+void ws_server_start(httpd_handle_t http_server_handle){
     ESP_LOGI(TAG,"Websocket server started");
     ws_df_semaphore = xSemaphoreCreateBinary(); // Create the binary semaphore
     xSemaphoreGive(ws_df_semaphore); // Give the semaphore initially

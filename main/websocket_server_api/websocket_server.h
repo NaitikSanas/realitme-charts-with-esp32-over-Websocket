@@ -8,6 +8,6 @@ struct async_resp_arg {
     int fd;
 };
 
-void start_ws_server(httpd_handle_t http_server_handle);
-int set_data_fields(uint8_t* data, uint16_t len, bool clear_on_send);
+void ws_server_start(httpd_handle_t http_server_handle);
+int ws_set_data_fields(uint8_t* data, uint16_t len, bool clear_on_send);
 int ws_data_received_cb(uint8_t* data, size_t len);

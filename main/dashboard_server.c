@@ -69,7 +69,7 @@ void start_server (void){
 
 	if (httpd_start(&http_server_handle, &config) == ESP_OK)
 	{  
-        start_ws_server(http_server_handle);
+        ws_server_start(http_server_handle);
         add_new_uri_handler(
             http_server_handle, 
             "/chart.js",
