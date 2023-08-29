@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nik's VLab</title>
+    <script src="chart.js"></script>
+    <script src="index.js"></script>
+    <style>
+        h1 {
+            color: rgb(72, 141, 251);
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center; 
+        }
+        .charts {
+            background-color: rgb(6, 11, 36);
+            border-radius: 10px;
+            min-width: 0; /* Allow content to shrink if needed */
+            flex-basis: calc(33.33% - 8px); /* Adjust based on your spacing needs */
+            margin: 4px; /* Adjust spacing between graphs */
+            box-sizing: border-box;
+        }
+
+        .charts-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -4px; /* Counteract the margin on individual graphs */
+        }
+
+        body {
+            background-color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+
+<body>
+    <h1> Nik's VLab </h1>
+    <div class="charts-container">
+        <canvas class = "charts" id = "X-Angle" height="350" width="600" ></canvas>
+        <canvas class = "charts" id = "Y-Angle" height="350" width="600" ></canvas>
+        <canvas class = "charts" id = "Z-Angle" height="350" width="600" ></canvas>
+        <canvas class = "charts" id = "X-Acc" height="350" width="600" ></canvas>
+        <canvas class = "charts" id = "Y-Acc" height="350" width="600" ></canvas>
+        <canvas class = "charts" id = "Z-Acc" height="350" width="600" ></canvas>
+    </div>
+</body>
+
+</html>
